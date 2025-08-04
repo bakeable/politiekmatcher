@@ -1,216 +1,215 @@
 # PolitiekMatcher
 
-**Transparante politieke analyse via AI** - An open-source platform that helps Dutch citizens understand their political alignment through AI-powered analysis.
+**Transparante politieke analyse via AI** - Een open-source platform dat Nederlandse burgers helpt hun politieke voorkeur te begrijpen via AI-gestuurde analyse.
 
-## 🎯 Project Goal
+## 🎯 Projectdoel
 
-PolitiekMatcher provides objective, transparent political analysis by matching user opinions with Dutch political parties. Using advanced AI and machine learning, the platform analyzes political statements across seven key dimensions to help citizens make informed voting decisions.
+PolitiekMatcher biedt objectieve, transparante politieke analyse door gebruikersmeningen te koppelen aan Nederlandse politieke partijen. Met geavanceerde AI en machine learning analyseert het platform politieke stellingen op zeven belangrijke dimensies, zodat burgers weloverwogen stemkeuzes kunnen maken.
 
-### Key Features
+### Belangrijkste functies
 
-- **🤖 AI-Powered Opinion Analysis**: Automatically classifies user opinions using fine-tuned language models
-- **📊 Multi-Dimensional Political Mapping**: Seven-dimensional analysis framework covering economic, social, environmental, and institutional positions
-- **🔍 Transparent Matching Algorithm**: Complete visibility into how party matches are calculated
-- **📚 Comprehensive Party Data**: Analysis of official election programs and party positions
-- **💬 Interactive Chat Interface**: Natural conversation flow for political discussion
-- **🎨 Modern Web Interface**: Built with React, TypeScript, and GraphQL
+- **🤖 AI-gestuurde opinieanalyse**: Classificeert automatisch gebruikersmeningen met fijn-afgestelde taalmodellen
+- **📊 Multidimensionale politieke mapping**: Analyse op zeven dimensies, waaronder economisch, sociaal, milieu en institutioneel
+- **🔍 Transparant matching-algoritme**: Volledig inzicht in hoe partijmatches worden berekend
+- **📚 Uitgebreide partijdata**: Analyse van officiële verkiezingsprogramma’s en partijstandpunten
+- **🎨 Moderne webinterface**: Gebouwd met React, TypeScript en GraphQL
 
-## 🏗️ Architecture
+## 🏗️ Architectuur
 
-The platform consists of:
+Het platform bestaat uit:
 
 - **Frontend**: React + TypeScript + Apollo GraphQL
 - **Backend**: Django + Strawberry GraphQL
-- **AI/ML**: Custom fine-tuned transformer models + OpenAI GPT integration
-- **Database**: PostgreSQL with pgvector for semantic search
-- **Task Queue**: Celery + Redis for background processing
+- **AI/ML**: Aangepaste fijn-afgestelde transformer modellen + OpenAI GPT-integratie
+- **Database**: PostgreSQL met pgvector voor semantisch zoeken
+- **Taakqueue**: Celery + Redis voor achtergrondverwerking
 
-## 📋 Prerequisites
+## 📋 Vereisten
 
-- Python 3.11 or 3.12
+- Python 3.11 of 3.12
 - Poetry (dependency management)
 - PostgreSQL 14+
 - Redis
-- Node.js 18+ (for frontend development)
+- Node.js 18+ (voor frontend-ontwikkeling)
 
-## 🚀 Quick Start
+## 🚀 Snel starten
 
-### 1. Clone the Repository
+### 1. Repository klonen
 
 ```bash
 git clone https://github.com/yourusername/politiekmatcher.git
 cd politiekmatcher
 ```
 
-### 2. Set Up Python Environment
+### 2. Python-omgeving instellen
 
 ```bash
-# Install Poetry if you haven't already
+# Installeer Poetry als je dat nog niet hebt gedaan
 curl -sSL https://install.python-poetry.org | python3 -
 
-# Install dependencies
+# Installeer afhankelijkheden
 poetry install
 
-# Activate virtual environment
+# Activeer virtuele omgeving
 poetry shell
 ```
 
-### 3. Configure Environment
+### 3. Omgeving configureren
 
 ```bash
-# Copy environment template
+# Kopieer sjabloon voor omgeving
 cp .env.example .env
 
-# Edit .env with your configuration:
-# - Database settings
-# - OpenAI API key
-# - Redis configuration
-# - Secret keys
+# Bewerk .env met jouw configuratie:
+# - Database-instellingen
+# - OpenAI API-sleutel
+# - Redis-configuratie
+# - Geheime sleutels
 ```
 
-### 4. Set Up Database
+### 4. Database instellen
 
 ```bash
-# Start PostgreSQL and Redis
+# Start PostgreSQL en Redis
 brew services start postgresql
 brew services start redis
 
-# Create database
+# Maak database aan
 createdb politiekmatcher
 
-# Run migrations
+# Voer migraties uit
 python manage.py migrate
 
-# Load initial data (optional)
+# Laad initiële data (optioneel)
 python manage.py loaddata initial_data.json
 ```
 
-### 5. Download ML Models
+### 5. ML-modellen downloaden
 
 ```bash
-# Download pre-trained models
+# Download vooraf getrainde modellen
 python manage.py download_models
 
-# Or train your own models (requires significant compute)
+# Of train je eigen modellen (vereist veel rekenkracht)
 python manage.py train_models
 ```
 
-### 6. Start Development Server
+### 6. Ontwikkelserver starten
 
 ```bash
-# Start Django development server
+# Start Django ontwikkelserver
 python manage.py runserver
 
-# In another terminal, start Celery worker
+# Start Celery worker in een andere terminal
 celery -A politiekmatcher worker -l info
 
-# Start Celery beat (for scheduled tasks)
+# Start Celery beat (voor geplande taken)
 celery -A politiekmatcher beat -l info
 ```
 
-The API will be available at `http://localhost:8000/graphql/`
+De API is beschikbaar op `http://localhost:8000/graphql/`
 
-## 🔧 Development Setup
+## 🔧 Ontwikkelomgeving
 
-### Install Development Dependencies
+### Ontwikkelafhankelijkheden installeren
 
 ```bash
 poetry install --with dev
 ```
 
-### Code Quality Tools
+### Codekwaliteit tools
 
 ```bash
-# Format code
+# Code formatteren
 black .
 
-# Lint code
+# Code linten
 ruff check .
 
 # Type checking
 mypy .
 
-# Run tests
+# Tests uitvoeren
 pytest
 ```
 
-### Pre-commit Hooks
+### Pre-commit hooks
 
 ```bash
-# Install pre-commit
+# Installeer pre-commit
 pip install pre-commit
 
-# Set up git hooks
+# Stel git hooks in
 pre-commit install
 ```
 
-## 📚 Documentation
+## 📚 Documentatie
 
-Comprehensive documentation is available in the [`docs/`](docs/) directory:
+Uitgebreide documentatie is beschikbaar in de [`docs/`](docs/) map:
 
-- **[System Architecture](docs/system_architecture.md)** - Overall system design and data flow
-- **[Opinion Classification](docs/opinion_classification.md)** - How user opinions are classified
-- **[Matching Algorithm](docs/matching_algorithm.md)** - Complete transparency of the matching process
-- **[Political Dimensions](docs/political_dimensions_finetuning.md)** - Seven-dimensional political analysis
-- **[OpenAI Integration](docs/openai_integration.md)** - AI-powered explanations and analysis
-- **[Data Sources](docs/data_sources_and_processing.md)** - Political content collection and processing
+- **[Systeemarchitectuur](docs/system_architecture.md)** - Overzicht van systeemontwerp en datastromen
+- **[Opinieclassificatie](docs/opinion_classification.md)** - Hoe gebruikersmeningen worden geclassificeerd
+- **[Matching-algoritme](docs/matching_algorithm.md)** - Volledige transparantie van het matchingproces
+- **[Politieke dimensies](docs/political_dimensions_finetuning.md)** - Zevendimensionale politieke analyse
+- **[OpenAI-integratie](docs/openai_integration.md)** - AI-gestuurde uitleg en analyse
+- **[Databronnen](docs/data_sources_and_processing.md)** - Verzameling en verwerking van politieke content
 
-## 🗂️ Project Structure
+## 🗂️ Projectstructuur
 
 ```
 politiekmatcher/
-├── apps/                    # Django applications
-│   ├── api/                # GraphQL API definitions
-│   ├── chat/               # Chat interface logic
-│   ├── content/            # Political content models
-│   ├── profiles/           # User profiles and matching
-│   ├── scraping/           # Data collection tools
-│   └── utils/              # Shared utilities
-├── docs/                   # Comprehensive documentation
-├── models/                 # ML models and training data
-├── scraped_content/        # Political party programs and data
+├── apps/                    # Django-applicaties
+│   ├── api/                # GraphQL API-definities
+│   ├── chat/               # Chatinterface-logica
+│   ├── content/            # Politieke contentmodellen
+│   ├── profiles/           # Gebruikersprofielen en matching
+│   ├── scraping/           # Dataverzamelingstools
+│   └── utils/              # Gedeelde utilities
+├── docs/                   # Uitgebreide documentatie
+├── models/                 # ML-modellen en trainingsdata
+├── scraped_content/        # Partijprogramma’s en data
 ├── tests/                  # Test suite
-└── politiekmatcher/        # Django project settings
+└── politiekmatcher/        # Django projectinstellingen
 ```
 
-## 🤝 Contributing
+## 🤝 Bijdragen
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+Bijdragen zijn welkom! Zie onze [bijdrage-richtlijnen](CONTRIBUTING.md) voor details.
 
-### Development Workflow
+### Ontwikkelworkflow
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Run tests (`pytest`)
-5. Commit your changes (`git commit -m 'Add amazing feature'`)
-6. Push to the branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+1. Fork de repository
+2. Maak een feature branch (`git checkout -b feature/amazing-feature`)
+3. Breng je wijzigingen aan
+4. Voer tests uit (`pytest`)
+5. Commit je wijzigingen (`git commit -m 'Add amazing feature'`)
+6. Push naar de branch (`git push origin feature/amazing-feature`)
+7. Open een Pull Request
 
-## 📊 Transparency Commitment
+## 📊 Transparantiebelofte
 
-PolitiekMatcher is committed to complete transparency in political analysis:
+PolitiekMatcher streeft naar volledige transparantie in politieke analyse:
 
-- **Open Source**: All code is publicly available
-- **Documented Algorithms**: Every step of the matching process is documented
-- **Traceable Data Sources**: All party positions link back to official sources
-- **Bias Monitoring**: Regular audits of AI model outputs for political bias
-- **Expert Validation**: Human experts review AI-generated political classifications
+- **Open Source**: Alle code is openbaar beschikbaar
+- **Gedocumenteerde algoritmes**: Elke stap van het matchingproces is gedocumenteerd
+- **Traceerbare databronnen**: Alle partijstandpunten verwijzen naar officiële bronnen
+- **Bias-monitoring**: Regelmatige audits van AI-uitvoer op politieke bias
+- **Expertvalidatie**: Menselijke experts beoordelen AI-geclassificeerde politieke stellingen
 
-## 📄 License
+## 📄 Licentie
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Dit project is gelicentieerd onder de MIT-licentie - zie het [LICENSE](LICENSE) bestand voor details.
 
 ## 🙋‍♀️ Support
 
-- **Documentation**: Check the [`docs/`](docs/) directory
-- **Issues**: Report bugs on [GitHub Issues](https://github.com/yourusername/politiekmatcher/issues)
-- **Discussions**: Join conversations in [GitHub Discussions](https://github.com/yourusername/politiekmatcher/discussions)
+- **Documentatie**: Zie de [`docs/`](docs/) map
+- **Issues**: Meld bugs via [GitHub Issues](https://github.com/yourusername/politiekmatcher/issues)
+- **Discussies**: Doe mee aan gesprekken in [GitHub Discussions](https://github.com/yourusername/politiekmatcher/discussions)
 
-## 🏛️ Political Neutrality
+## 🏛️ Politieke neutraliteit
 
-PolitiekMatcher is designed to be politically neutral. Our algorithms and AI models are trained to provide objective analysis without favoring any particular political ideology. We continuously monitor for bias and welcome community oversight.
+PolitiekMatcher is ontworpen om politiek neutraal te zijn. Onze algoritmes en AI-modellen zijn getraind om objectieve analyses te bieden zonder voorkeur voor een bepaalde politieke ideologie. We monitoren continu op bias en verwelkomen toezicht vanuit de community.
 
 ---
 
-**Made with ❤️ for Dutch democracy**
+**Gemaakt met ❤️ voor de Nederlandse democratie**
